@@ -15,7 +15,8 @@ export class TrackControlController {
     @HttpCode(201)
     async setTrackCommand(@Body() body: Body): Promise<void> {
         const jbody =  await JSON.parse(JSON.stringify(body));
-
-        this.trackControlService.setCommand(jbody.command,jbody.speed);
+        const command: "stop" | "forward" | "backward" | "left" | "right" = jbody.command.toLowerCase();
+        const speed: number = jbody.speed;
+        this.trackControlService.setCommand(command,speed);
     }
 }
