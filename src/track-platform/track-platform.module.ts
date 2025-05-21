@@ -5,7 +5,7 @@ import { TrackSideService} from '../track-side/track-side.service';
 @Module({
   providers: [TrackPlatformService],
   exports: [TrackPlatformService],
-  imports: [TrackSideService]
+  // imports: [TrackSideService]
 })
 export class TrackPlatformModule {}
 //

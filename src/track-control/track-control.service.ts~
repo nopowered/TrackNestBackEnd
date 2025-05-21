@@ -11,7 +11,7 @@ export class TrackControlService {
     const speed: number = this.trackPlatformService.getSpeed();
 
     return JSON.stringify({
-      command: left === right && left === "forward" ? "forward" : left === right && left === "stop" ? "stop" : left === right && left === "back" ? "back" : right === "stop" ? "left" : "right",
+      command: left === right && left === "forward" ? "forward" : left === right && left === "stop" ? "stop" : left === right && left === "back" ? "back" : left === "stop" ? "left" : "right",
       speed: speed
     });
   }

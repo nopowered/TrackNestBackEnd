@@ -1,7 +1,10 @@
 import {Body, Controller, Get, Header, HttpCode, Post} from '@nestjs/common';
 import {TrackControlService} from "./track-control.service";
+import {readFileSync} from 'fs';
 
-@Controller("api/v1/track-controll")
+const config = JSON.parse(readFileSync("conf.json").toString());
+
+@Controller(config.url || "api/v1")
 export class TrackControlController {
     constructor(private trackControlService: TrackControlService) {}
 

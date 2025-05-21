@@ -1,0 +1,14 @@
+{
+  "port": 3001,
+  "pins":{
+    "left" : {
+      "forward": 21,
+      "back": 22
+    },
+
+    "right": {
+      "forward": 23,
+      "back": 24
+    }
+  }
+}
