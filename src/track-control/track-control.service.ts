@@ -6,16 +6,19 @@ export class TrackControlService {
   constructor(private trackPlatformService: TrackPlatformService) {}
 
   getState(): string {
+    const left: "stop" | "forward" | "back" = this.trackPlatformService.getLeftCommand();
+    const right: "stop" | "forward" | "back" = this.trackPlatformService.getRightCommand();
+    const speed: number = this.trackPlatformService.getSpeed();
+
     return JSON.stringify({
-      leftCommand: this.trackPlatformService.getLeftCommand(),
-      rightCommand: this.trackPlatformService.getRightCommand(),
-      speed: this.trackPlatformService.getSpeed()
+      command: left === right && left === "forward" ? "forward" : left === right && left === "stop" ? "stop" : left === right && left === "back" ? "back" : left === "stop" ? "left" : "right",
     });
   }
 
-  setCommand(command: "stop" | "forward" | "backward" | "left" | "right", speed: number): void {
+  setCommand(command: "stop" | "forward" | "back" | "left" | "right", speed: number): void {
     this.trackPlatformService.setLeftCommand(command === "left" || command === "forward" ? "forward" : "stop");
     this.trackPlatformService.setRightCommand(command === "right" || command === "forward" ? "forward" : "stop");
     this.trackPlatformService.setSpeed(speed);
   }
 }
+//

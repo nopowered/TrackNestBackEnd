@@ -1,7 +1,7 @@
 import {Body, Controller, Get, Header, HttpCode, Post} from '@nestjs/common';
 import {TrackControlService} from "./track-control.service";
 
-@Controller("api/v1/track-control")
+@Controller("api/v1/track-controll")
 export class TrackControlController {
     constructor(private trackControlService: TrackControlService) {}
 
@@ -15,8 +15,9 @@ export class TrackControlController {
     @HttpCode(201)
     async setTrackCommand(@Body() body: Body): Promise<void> {
         const jbody =  await JSON.parse(JSON.stringify(body));
-        const command: "stop" | "forward" | "backward" | "left" | "right" = jbody.command.toLowerCase();
+        const command: "stop" | "forward" | "back" | "left" | "right" = jbody.command.toLowerCase();
         const speed: number = jbody.speed;
         this.trackControlService.setCommand(command,speed);
     }
 }
+//
